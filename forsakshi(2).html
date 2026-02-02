@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Sakshi ✨</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap');
+
+        :root {
+            --primary-pink: #ff758c;
+            --secondary-pink: #ff7eb3;
+            --glass: rgba(255, 255, 255, 0.2);
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(45deg, #ff9a9e 0%, #fad0c4 99%, #fad0c4 100%);
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Floating Hearts Background */
+        .bg-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Glassmorphism Card */
+        .container {
+            background: var(--glass);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 40px;
+            width: 80%;
+            max-width: 600px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 2s ease-in;
+        }
+
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 4rem;
+            color: white;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 10px;
+        }
+
+        .tagline {
+            color: white;
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .message-box {
+            margin: 30px 0;
+            font-size: 1.1rem;
+            color: #fff;
+            line-height: 1.6;
+        }
+
+        /* Interactive Button */
+        .btn-surprise {
+            background: white;
+            color: var(--primary-pink);
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .btn-surprise:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+        }
+
+        /* Hidden Surprise Section */
+        #secret-content {
+            display: none;
+            margin-top: 30px;
+            padding: 20px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .stat-card {
+            background: rgba(255,255,255,0.2);
+            padding: 10px;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            color: white;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+        }
+
+        .heart {
+            position: absolute;
+            color: white;
+            font-size: 20px;
+            animation: float linear forwards;
+        }
+
+        /* Credits Style */
+        .credits {
+            margin-top: 30px;
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.7);
+            letter-spacing: 1px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-hearts" id="heart-container"></div>
+
+    <div class="container">
+        <p class="tagline">To the best person ever</p>
+        <h1>Sakshi ✨</h1>
+        
+        <div class="message-box">
+            <p id="typewriter"></p>
+        </div>
+
+        <button class="btn-surprise" onclick="revealSurprise()">Click for a Surprise 🎁</button>
+
+        <div id="secret-content">
+            <h3 style="color: white;">Our Friendship Vitals:</h3>
+            <div class="stats-grid">
+                <div class="stat-card"><b>Laughter:</b> ♾️ Infinite</div>
+                <div class="stat-card"><b>Secrets:</b> 🔒 10,000+</div>
+                <div class="stat-card"><b>Vibe:</b> 🌈 Unmatched</div>
+                <div class="stat-card"><b>Loyalty:</b> 💯 1000%</div>
+            </div>
+            <p style="color: white; font-style: italic; margin-top: 20px;">
+                "You're not just my BSF, you're my unbiological sister."
+            </p>
+        </div>
+
+        <p class="credits">Made by Jugal</p>
+    </div>
+
+    <script>
+        // Typewriter Effect
+        const text = "They say stars are pretty, but they haven't seen your vibe. Thanks for being the chaotic, sweet, and amazing person you are. This little corner of the internet is dedicated to you! 💖";
+        let i = 0;
+        function typeWriter() {
+            if (i < text.length) {
+                document.getElementById("typewriter").innerHTML += text.charAt(i);
+                i++;
+                setTimeout(typeWriter, 50);
+            }
+        }
+        window.onload = typeWriter;
+
+        // Floating Hearts Generator
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 3 + 2 + 's';
+            heart.style.opacity = Math.random();
+            document.getElementById('heart-container').appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
+        }
+        setInterval(createHeart, 300);
+
+        // Surprise Function
+        function revealSurprise() {
+            const content = document.getElementById('secret-content');
+            content.style.display = 'block';
+            content.style.animation = 'fadeIn 1s ease-in';
+            
+            // Extra "Crazy" part: Alert spam (the nice kind)
+            alert("Warning: Sakshi is too cool for this browser! 😎");
+            alert("One more thing... You're stuck with me forever! 🌸");
+        }
+    </script>
+</body>
+</html>
